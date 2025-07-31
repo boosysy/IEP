@@ -53,15 +53,12 @@ if st.button("📌 개별화교육 내용 추천받기"):
         st.warning("학생의 현재 학습수행수준을 입력해주세요.")
     else:
         with st.spinner("AI가 교육과정 기반 내용을 생성 중입니다..."):
-            # 프롬프트 생성 시 참고 문서 텍스트 포함
             prompt = generate_prompt(subject, curriculum, student_level, reference_text)
-            
             response = openai.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.4,
             )
-
             result = response.choices[0].message.content
             st.success("추천이 완료되었습니다!")
             st.markdown("### ✅ 추천 결과")

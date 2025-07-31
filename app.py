@@ -27,8 +27,8 @@ if st.button("📌 개별화교육 내용 추천받기"):
         with st.spinner("AI가 교육과정 기반 내용을 생성 중입니다..."):
             prompt = generate_prompt(subject, curriculum, student_level)
 
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
+            response = openai.chat.completions.create(
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.4
             )
